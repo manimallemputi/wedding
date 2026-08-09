@@ -58,9 +58,33 @@
 	<![endif]-->
 
 	</head>
-	<body>
+	<body class="invite-locked">
 		
 	<div class="fh5co-loader"></div>
+
+	<!-- Invitation cover / wrapper (opens into the full invite) -->
+	<div id="invite-cover" class="invite-cover" role="dialog" aria-modal="true" aria-labelledby="invite-cover-title">
+		<div class="invite-cover-bg" style="background-image:url(images/invite-cover.jpg);"></div>
+		<div class="invite-cover-veil"></div>
+		<div class="invite-cover-shimmer" aria-hidden="true"></div>
+		<div class="invite-cover-content">
+			<div class="invite-ganesha-wrap">
+				<img class="invite-ganesha" src="images/ganesha.jpg" alt="Lord Ganesha" width="88" height="88" />
+			</div>
+			<p class="invite-cover-kicker">You are cordially invited</p>
+			<div id="invite-cover-title" class="invite-cover-title">
+				<span class="invite-cover-name">Manikanta</span>
+				<span class="invite-cover-weds">weds</span>
+				<span class="invite-cover-name">Anusha</span>
+			</div>
+			<p class="invite-cover-date">21 &amp; 23 August 2026</p>
+			<p class="invite-cover-place">Avula Ranch · Celina, Texas</p>
+			<button type="button" id="invite-open" class="invite-open-btn">
+				<span class="invite-open-label">Open invitation</span>
+				<span class="invite-open-hint">Tap to enter</span>
+			</button>
+		</div>
+	</div>
 	
 	<div id="page">
 	<nav class="fh5co-nav" role="navigation">

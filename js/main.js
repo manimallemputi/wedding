@@ -223,6 +223,49 @@
 		$(".fh5co-loader").fadeOut("slow");
 	};
 
+	// Invitation cover — open wrapper into full site
+	var invitationCover = function() {
+		var $cover = $('#invite-cover');
+		var $body = $('body');
+		if (!$cover.length) {
+			return;
+		}
+
+		var openInvite = function() {
+			if ($cover.hasClass('is-opening') || $cover.hasClass('is-open')) {
+				return;
+			}
+			$cover.addClass('is-opening');
+			$body.addClass('invite-opening');
+
+			// Quick fade, then reveal invite
+			window.setTimeout(function() {
+				$cover.addClass('is-open');
+				$body.removeClass('invite-locked invite-opening').addClass('invite-revealed');
+				window.setTimeout(function() {
+					$cover.attr('aria-hidden', 'true').css('pointer-events', 'none');
+				}, 500);
+			}, 420);
+		};
+
+		$('#invite-open').on('click', function(e) {
+			e.preventDefault();
+			openInvite();
+		});
+
+		$cover.on('keydown', function(e) {
+			if (e.key === 'Enter' || e.key === ' ') {
+				e.preventDefault();
+				openInvite();
+			}
+		});
+
+		// Simple fade-in once loader is gone
+		window.setTimeout(function() {
+			$cover.addClass('is-ready');
+		}, 200);
+	};
+
 	var counter = function() {
 		$('.js-counter').countTo({
 			 formatter: function (value, options) {
@@ -265,6 +308,7 @@
 		goToTop();
 		smoothSectionScroll();
 		loaderPage();
+		invitationCover();
 		counter();
 		counterWayPoint();
 	});
