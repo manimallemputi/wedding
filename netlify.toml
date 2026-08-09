@@ -1,10 +1,16 @@
 # Static wedding invitation site
 [build]
+  # A build step helps Netlify run form detection reliably
+  command = "echo 'Static wedding site — Netlify Forms enabled'"
   publish = "."
-  # No build command — pure HTML/CSS/JS
 
-# Netlify Forms are enabled automatically when forms use data-netlify="true"
-# Submissions: Site → Forms → rsvp
+# Forms: data-netlify="true" on form name="rsvp" in index.html
+# Dashboard → Forms → rsvp
+
+[[redirects]]
+  from = "/thank-you"
+  to = "/thank-you.html"
+  status = 200
 
 [[headers]]
   for = "/*"

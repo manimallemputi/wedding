@@ -223,6 +223,53 @@
 		$(".fh5co-loader").fadeOut("slow");
 	};
 
+	// Netlify Forms RSVP — POST to site root, then go to thank-you page
+	// (avoids browser POST to thank-you.html which returns 404 without form handling)
+	var rsvpForm = function() {
+		var form = document.getElementById('rsvp-form');
+		if (!form) {
+			return;
+		}
+
+		form.addEventListener('submit', function(event) {
+			event.preventDefault();
+
+			var submitBtn = form.querySelector('.rsvp-submit');
+			var originalLabel = submitBtn ? submitBtn.textContent : '';
+			if (submitBtn) {
+				submitBtn.disabled = true;
+				submitBtn.textContent = 'Sending…';
+			}
+
+			var formData = new FormData(form);
+			// Ensure Netlify receives the form name
+			if (!formData.get('form-name')) {
+				formData.set('form-name', 'rsvp');
+			}
+
+			var body = new URLSearchParams(formData).toString();
+
+			fetch('/', {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+				body: body
+			}).then(function(res) {
+				// Netlify returns 200 when the form is accepted
+				if (res.ok) {
+					window.location.href = 'thank-you.html';
+					return;
+				}
+				throw new Error('Form submission failed (' + res.status + ')');
+			}).catch(function() {
+				if (submitBtn) {
+					submitBtn.disabled = false;
+					submitBtn.textContent = originalLabel || 'Send RSVP';
+				}
+				alert('Sorry — we could not send your RSVP just now. Please try again in a moment, or email the couple directly.');
+			});
+		});
+	};
+
 	// Invitation cover — open wrapper into full site
 	var invitationCover = function() {
 		var $cover = $('#invite-cover');
@@ -309,6 +356,7 @@
 		smoothSectionScroll();
 		loaderPage();
 		invitationCover();
+		rsvpForm();
 		counter();
 		counterWayPoint();
 	});
