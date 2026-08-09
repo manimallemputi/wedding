@@ -1330,111 +1330,157 @@ h1, h2, h3, h4, h5, h6, figure {
     right: auto;
   }
 }
-#fh5co-gallery-list {
-  flex-wrap: wrap;
-  -webkit-flex-wrap: wrap;
-  -moz-flex-wrap: wrap;
-  display: -webkit-box;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
+/* =========================================================
+   Bless us — split page: message left | photo right
+   ========================================================= */
+#fh5co-blessing.blessing-page {
+  position: relative;
+  width: 100%;
+  float: left;
+  min-height: 100vh;
+  min-height: 100dvh;
   display: flex;
-  position: relative;
-  float: left;
+  align-items: stretch;
+  justify-content: center;
+  background: linear-gradient(160deg, #faf4ec 0%, #f3e6d6 45%, #efe0d0 100%);
+  scroll-margin-top: 0;
+  box-sizing: border-box;
   padding: 0;
-  margin: 0;
-  width: 100%;
+  clear: both;
+  overflow: hidden;
 }
-#fh5co-gallery-list li {
-  display: block;
-  padding: 0;
-  margin: 0 0 10px 1%;
-  list-style: none;
-  min-height: 400px;
-  background-position: center center;
+#fh5co-blessing .blessing-split {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+/* Left: message on traditional wedding background */
+#fh5co-blessing .blessing-copy {
+  width: 50%;
+  flex: 0 0 50%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  text-align: left;
+  padding: 4.5rem 4rem 4.5rem 5rem;
+  box-sizing: border-box;
+  color: #2c211c;
   background-size: cover;
+  background-position: center center;
   background-repeat: no-repeat;
-  float: left;
-  clear: left;
-  position: relative;
-  -webkit-border-radius: 7px;
-  -moz-border-radius: 7px;
-  -ms-border-radius: 7px;
-  border-radius: 7px;
+  background-color: #f3e6d6;
+  overflow: hidden;
 }
-@media screen and (max-width: 480px) {
-  #fh5co-gallery-list li {
-    margin-left: 0;
-  }
+#fh5co-blessing .blessing-copy-veil {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  /* Soft cream veil for text contrast over florals */
+  background:
+    linear-gradient(115deg, rgba(255, 248, 240, 0.82) 0%, rgba(255, 244, 232, 0.72) 45%, rgba(250, 236, 220, 0.68) 100%);
+  pointer-events: none;
 }
-#fh5co-gallery-list li a {
-  min-height: 400px;
-  padding: 2em;
+#fh5co-blessing .blessing-copy-content {
   position: relative;
-  width: 100%;
+  z-index: 2;
+  max-width: 30em;
+}
+/* Right: photo */
+#fh5co-blessing .blessing-photo {
+  width: 50%;
+  flex: 0 0 50%;
+  position: relative;
+  min-height: 100%;
+  overflow: hidden;
+  background: #2a211c;
+}
+#fh5co-blessing .blessing-photo img {
   display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+  object-fit: cover;
+  object-position: center 20%;
 }
-#fh5co-gallery-list li a:before {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  content: "";
-  z-index: 80;
-  -webkit-transition: 0.5s;
-  -o-transition: 0.5s;
-  transition: 0.5s;
-  -webkit-border-radius: 7px;
-  -moz-border-radius: 7px;
-  -ms-border-radius: 7px;
-  border-radius: 7px;
-  background: rgba(0, 0, 0, 0.2);
+#fh5co-blessing .blessing-title {
+  margin: 0 0 1.1rem;
+  padding: 0;
+  font-family: "Amsterdam", Engagement, Georgia, cursive;
+  font-size: clamp(40px, 4.2vw, 58px);
+  line-height: 1.15;
+  font-weight: 400;
+  color: #2c211c;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.35);
 }
-#fh5co-gallery-list li a:hover:before {
-  background: rgba(0, 0, 0, 0.5);
+#fh5co-blessing .blessing-divider {
+  width: 72px;
+  height: 2px;
+  margin: 0 0 1.45rem;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #c48a52, rgba(196, 138, 82, 0.15));
 }
-#fh5co-gallery-list li a .case-studies-summary {
-  width: auto;
-  bottom: 2em;
-  left: 2em;
-  right: 2em;
-  position: absolute;
-  z-index: 100;
+#fh5co-blessing .blessing-message {
+  margin: 0;
+  max-width: 28em;
+  font-family: Engagement, Georgia, cursive;
+  font-size: clamp(20px, 1.7vw, 26px);
+  line-height: 1.55;
+  color: #3f2f26;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.25);
 }
-@media screen and (max-width: 768px) {
-  #fh5co-gallery-list li a .case-studies-summary {
-    bottom: 1em;
-    left: 1em;
-    right: 1em;
+@media screen and (max-width: 900px) {
+  #fh5co-blessing .blessing-split {
+    flex-direction: column-reverse;
+    min-height: auto;
   }
-}
-#fh5co-gallery-list li a .case-studies-summary span {
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  font-size: 13px;
-  color: rgba(255, 255, 255, 0.7);
-}
-#fh5co-gallery-list li a .case-studies-summary h2 {
-  color: #fff;
-  margin-bottom: 0;
-}
-@media screen and (max-width: 768px) {
-  #fh5co-gallery-list li a .case-studies-summary h2 {
-    font-size: 20px;
+  #fh5co-blessing.blessing-page {
+    min-height: auto;
   }
-}
-#fh5co-gallery-list li.one-third {
-  width: 32.3%;
-}
-@media screen and (max-width: 768px) {
-  #fh5co-gallery-list li.one-third {
-    width: 49%;
-  }
-}
-@media screen and (max-width: 480px) {
-  #fh5co-gallery-list li.one-third {
+  #fh5co-blessing .blessing-copy,
+  #fh5co-blessing .blessing-photo {
     width: 100%;
+    flex: none;
+  }
+  #fh5co-blessing .blessing-photo {
+    min-height: 48vh;
+    max-height: 55vh;
+  }
+  #fh5co-blessing .blessing-photo img {
+    min-height: 48vh;
+    max-height: 55vh;
+    height: 48vh;
+  }
+  #fh5co-blessing .blessing-copy {
+    align-items: center;
+    text-align: center;
+    padding: 2.75rem 1.5rem 3.25rem;
+  }
+  #fh5co-blessing .blessing-copy-content {
+    max-width: 24em;
+  }
+  #fh5co-blessing .blessing-divider {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  #fh5co-blessing .blessing-message {
+    max-width: 22em;
+  }
+}
+@media screen and (min-width: 901px) and (max-height: 780px) {
+  #fh5co-blessing .blessing-copy {
+    padding: 3rem 3rem 3rem 3.5rem;
+  }
+  #fh5co-blessing .blessing-title {
+    font-size: clamp(34px, 3.6vw, 46px);
+  }
+  #fh5co-blessing .blessing-message {
+    font-size: 20px;
   }
 }
 
