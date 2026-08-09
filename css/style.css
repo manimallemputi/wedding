@@ -297,10 +297,13 @@ h1, h2, h3, h4, h5, h6, figure {
   transform: scale(1.2);
 }
 
+/* =========================================================
+   HERO / HOME — viewport-aware layout (web + mobile)
+   ========================================================= */
 .fh5co-cover {
   height: 100vh;
   height: 100dvh;
-  min-height: 640px;
+  min-height: 600px;
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
@@ -309,14 +312,12 @@ h1, h2, h3, h4, h5, h6, figure {
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
 }
 .fh5co-cover .overlay {
   z-index: 0;
   position: absolute;
-  bottom: 0;
-  top: 0;
-  left: 0;
-  right: 0;
+  inset: 0;
   background: rgba(40, 30, 25, 0.42);
 }
 .fh5co-cover > .fh5co-container,
@@ -328,19 +329,24 @@ h1, h2, h3, h4, h5, h6, figure {
   float: none;
   margin: 0 auto;
 }
-/* Hero content centering */
+
 #fh5co-header.fh5co-cover {
   background-position: center center;
 }
+
+/* Shell that centers content in the viewport */
 #fh5co-header .hero-container {
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
-  max-width: 920px;
-  padding: 100px 24px 56px;
+  max-width: 960px;
+  min-height: 100%;
+  padding: 96px 24px 40px; /* top clears absolute nav */
   box-sizing: border-box;
 }
+
+/* Vertical stack of hero blocks */
 #fh5co-header .hero-content {
   width: 100%;
   max-width: 720px;
@@ -350,8 +356,7 @@ h1, h2, h3, h4, h5, h6, figure {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  /* Desktop rhythm: title → photo → date → quote → clock → CTA */
-  gap: 0;
+  gap: 18px;
 }
 #fh5co-header .hero-content > * {
   flex-shrink: 0;
@@ -360,75 +365,49 @@ h1, h2, h3, h4, h5, h6, figure {
   z-index: 1;
 }
 
-/* Title block — stacked, no overflow into photo */
+/* —— Title —— */
 #fh5co-header .hero-title {
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
   width: 100%;
-  padding: 4px 16px 0;
   z-index: 2;
-  /* Extra bottom space so script flourishes clear the photo */
-  margin-bottom: 22px !important;
+  color: #fff;
 }
 #fh5co-header .hero-title .hero-name {
-  display: block;
-  width: 100%;
   color: #fff;
   font-family: "Amsterdam", Arial, serif;
-  font-size: 40px;
-  line-height: 1.08;
-  text-shadow: 0 2px 18px rgba(0, 0, 0, 0.35);
-  padding: 0.08em 0.15em 0.18em;
-  overflow: visible;
-}
-#fh5co-header .hero-title .hero-name:first-child {
-  padding-bottom: 0.02em;
-}
-#fh5co-header .hero-title .hero-name:last-child {
-  padding-top: 0.02em;
-  /* Absorb descender/flourish below Anusha */
-  padding-bottom: 0.4em;
-  margin-bottom: 0.1em;
+  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.35);
+  line-height: 1.1;
 }
 #fh5co-header .hero-title .hero-weds {
-  display: block;
-  width: 100%;
   color: #fff;
   font-family: Engagement, Georgia, serif;
-  font-size: 16px;
   font-weight: 400;
-  letter-spacing: 0.28em;
   text-transform: lowercase;
   opacity: 0.95;
-  line-height: 1.2;
-  padding: 4px 0 6px;
   text-shadow: 0 1px 10px rgba(0, 0, 0, 0.3);
 }
 
-/* Couple photo with soft blend frame */
+/* —— Couple photo —— */
 #fh5co-header .hero-photo-wrap {
   position: relative;
   z-index: 1;
-  width: min(380px, 42vw);
-  max-width: 400px;
-  margin: 0 0 28px !important;
+  width: min(320px, 30vw);
+  max-width: 340px;
   padding: 5px;
-  border-radius: 22px;
-  background:
-    linear-gradient(145deg, rgba(255, 236, 210, 0.85), rgba(196, 138, 82, 0.55), rgba(120, 60, 40, 0.45));
+  border-radius: 20px;
+  background: linear-gradient(145deg, rgba(255, 236, 210, 0.85), rgba(196, 138, 82, 0.55), rgba(120, 60, 40, 0.45));
   box-shadow:
     0 12px 36px rgba(0, 0, 0, 0.35),
-    0 0 0 1px rgba(255, 255, 255, 0.18),
-    inset 0 0 0 1px rgba(255, 255, 255, 0.12);
+    0 0 0 1px rgba(255, 255, 255, 0.18);
 }
 #fh5co-header .hero-photo-wrap::before {
   content: "";
   position: absolute;
   inset: -10px;
-  border-radius: 28px;
-  background: radial-gradient(ellipse at center, rgba(255, 220, 180, 0.28) 0%, rgba(255, 200, 140, 0.08) 45%, transparent 70%);
+  border-radius: 26px;
+  background: radial-gradient(ellipse at center, rgba(255, 220, 180, 0.28) 0%, transparent 70%);
   pointer-events: none;
   z-index: 0;
 }
@@ -436,7 +415,7 @@ h1, h2, h3, h4, h5, h6, figure {
   content: "";
   position: absolute;
   inset: 5px;
-  border-radius: 18px;
+  border-radius: 16px;
   box-shadow: inset 0 0 28px rgba(60, 30, 15, 0.22);
   pointer-events: none;
   z-index: 2;
@@ -450,47 +429,66 @@ h1, h2, h3, h4, h5, h6, figure {
   aspect-ratio: 16 / 10;
   object-fit: cover;
   object-position: center 22%;
-  border-radius: 18px;
-  margin: 0;
+  border-radius: 16px;
   filter: saturate(1.05) contrast(1.02);
 }
+
+/* —— Date / quote / CTA —— */
 #fh5co-header .hero-date {
   color: #fff !important;
   font-family: Engagement, Georgia, serif !important;
-  font-size: 24px !important;
+  font-size: 22px !important;
   line-height: 1.3 !important;
   text-shadow: 0 1px 10px rgba(0, 0, 0, 0.3);
-  padding: 0 !important;
-  margin-bottom: 14px !important;
 }
 #fh5co-header .hero-quote {
   color: #fff !important;
   font-family: Engagement, Georgia, serif !important;
-  font-size: 18px !important;
+  font-size: 16px !important;
   line-height: 1.45 !important;
   max-width: 28em;
   padding: 0 16px !important;
   text-shadow: 0 1px 10px rgba(0, 0, 0, 0.3);
-  margin-bottom: 20px !important;
 }
+#fh5co-header .hero-cta {
+  width: 100%;
+  text-align: center;
+}
+#fh5co-header .hero-cta .btn {
+  padding: 14px 26px !important;
+  background: #fff !important;
+  color: #646464;
+  border: none !important;
+  font-size: 14px !important;
+  font-family: Sofia Sans Condensed, sans-serif;
+  text-transform: uppercase;
+  border-radius: 999px;
+  letter-spacing: 0.06em;
+  display: inline-block;
+}
+
+/* —— Flip clock —— */
 #fh5co-header .flipTimebox {
   width: 100%;
-  max-width: 100%;
-  overflow: visible;
   display: flex;
   justify-content: center;
-  /* Room above for Days/Hours/Minutes/Seconds labels */
-  padding-top: 20px;
-  margin-bottom: 28px !important;
+  align-items: center;
+  padding-top: 18px; /* room for Days/Hours labels */
   box-sizing: border-box;
+  overflow: visible;
 }
 #fh5co-header .flipTimebox .flip-clock-wrapper {
-  margin: 0.5em auto 0 !important;
+  margin: 0 auto !important;
   width: auto !important;
-  max-width: none;
-  text-align: center;
+  max-width: none !important;
   float: none !important;
+  display: inline-block !important;
   white-space: nowrap !important;
+  text-align: center;
+}
+#fh5co-header .flipTimebox .flip-clock-wrapper ul,
+#fh5co-header .flipTimebox .flip-clock-divider {
+  float: left !important;
 }
 #fh5co-header .flipTimebox .flip-clock-wrapper:before,
 #fh5co-header .flipTimebox .flip-clock-wrapper:after {
@@ -501,127 +499,126 @@ h1, h2, h3, h4, h5, h6, figure {
   clear: both;
 }
 #fh5co-header .flipTimebox .flip-clock-divider .flip-clock-label {
-  color: #fff;
+  color: #fff !important;
   text-shadow: 0 1px 6px rgba(0, 0, 0, 0.45);
 }
-/* Colon dots between timer units — always white for contrast */
 #fh5co-header .flipTimebox .flip-clock-dot,
 #fh5co-header .flip-clock-dot {
   background: #ffffff !important;
   box-shadow: 0 0 5px rgba(255, 255, 255, 0.85);
 }
-#fh5co-header .hero-cta {
-  width: 100%;
-  text-align: center;
-  padding-bottom: 8px;
-}
 
-/* —— Desktop / wide screens —— */
+/* -----------------------------
+   DESKTOP / TABLET LANDSCAPE
+   ----------------------------- */
 @media screen and (min-width: 769px) {
   #fh5co-header.fh5co-cover {
+    height: 100vh;
+    height: 100dvh;
     align-items: center;
+    justify-content: center;
   }
-  /* Clear the top nav — content starts lower, elements smaller */
   #fh5co-header .hero-container {
-    padding: 120px 32px 40px;
+    padding: 100px 32px 36px;
     max-width: 960px;
+    align-items: center;
+    justify-content: center;
   }
   #fh5co-header .hero-content {
-    max-width: 720px;
+    max-width: 760px;
+    gap: 16px;
   }
-  /* Single-line title: Manikanta weds Anusha */
+
+  /* Single-line title */
   #fh5co-header .hero-title {
     flex-direction: row;
     flex-wrap: nowrap;
     align-items: baseline;
-    justify-content: center;
-    gap: 0.35em;
-    margin-bottom: 22px !important;
-    padding: 0 12px 0.15em;
+    gap: 0.4em;
     white-space: nowrap;
+    padding: 0 8px 4px;
   }
   #fh5co-header .hero-title .hero-name {
     display: inline-block;
     width: auto;
-    font-size: clamp(36px, 3.4vw, 48px);
-    line-height: 1.15;
-    padding: 0.05em 0 0.2em;
-  }
-  #fh5co-header .hero-title .hero-name:first-child,
-  #fh5co-header .hero-title .hero-name:last-child {
-    padding-bottom: 0.15em;
-    margin-bottom: 0;
+    font-size: clamp(38px, 3.5vw, 50px);
+    padding: 0;
   }
   #fh5co-header .hero-title .hero-weds {
     display: inline-block;
     width: auto;
     font-size: 18px;
-    letter-spacing: 0.18em;
-    padding: 0 0.15em;
-    line-height: 1;
+    letter-spacing: 0.2em;
+    padding: 0 0.1em;
     position: relative;
-    top: -0.15em;
+    top: -0.12em;
   }
+
   #fh5co-header .hero-photo-wrap {
     width: min(300px, 28vw);
-    max-width: 320px;
-    margin-bottom: 18px !important;
+    max-width: 300px;
   }
   #fh5co-header .hero-date {
     font-size: 20px !important;
-    margin-bottom: 10px !important;
   }
   #fh5co-header .hero-quote {
     font-size: 16px !important;
-    margin-bottom: 12px !important;
   }
-  /* Timer: one row, white separator dots */
   #fh5co-header .flipTimebox {
-    margin-bottom: 20px !important;
-    padding-top: 20px;
-    transform: scale(0.82);
+    padding-top: 16px;
+    transform: scale(0.85);
     transform-origin: center center;
-    width: 100%;
-    max-width: 100%;
-    overflow: visible;
-  }
-  #fh5co-header .flipTimebox .flip-clock-wrapper {
-    display: inline-block !important;
-    white-space: nowrap !important;
-    width: auto !important;
-    max-width: none !important;
-    float: none !important;
-  }
-  #fh5co-header .flipTimebox .flip-clock-wrapper ul,
-  #fh5co-header .flipTimebox .flip-clock-divider {
-    float: left !important;
-  }
-  #fh5co-header .flipTimebox .flip-clock-dot {
-    background: #ffffff !important;
-    box-shadow: 0 0 4px rgba(255, 255, 255, 0.7);
-  }
-  #fh5co-header .hero-cta .btn {
-    padding: 12px 22px !important;
-    font-size: 14px !important;
   }
 }
 
-/* Large desktops still stay compact enough to clear nav */
 @media screen and (min-width: 1200px) {
   #fh5co-header .hero-container {
-    padding-top: 110px;
+    padding-top: 96px;
+  }
+  #fh5co-header .hero-content {
+    gap: 18px;
   }
   #fh5co-header .hero-title .hero-name {
-    font-size: 46px;
+    font-size: 48px;
   }
   #fh5co-header .hero-photo-wrap {
-    width: 300px;
+    width: 310px;
+    max-width: 310px;
   }
   #fh5co-header .flipTimebox {
-    transform: scale(0.88);
+    transform: scale(0.9);
   }
 }
 
+/* Shorter desktop windows — keep everything in view */
+@media screen and (min-width: 769px) and (max-height: 800px) {
+  #fh5co-header .hero-container {
+    padding-top: 72px;
+    padding-bottom: 24px;
+  }
+  #fh5co-header .hero-content {
+    gap: 12px;
+  }
+  #fh5co-header .hero-title .hero-name {
+    font-size: clamp(32px, 3vw, 40px);
+  }
+  #fh5co-header .hero-photo-wrap {
+    width: min(240px, 24vw);
+    max-width: 260px;
+  }
+  #fh5co-header .flipTimebox {
+    transform: scale(0.75);
+    padding-top: 12px;
+  }
+  #fh5co-header .hero-cta .btn {
+    padding: 11px 20px !important;
+    font-size: 13px !important;
+  }
+}
+
+/* -----------------------------
+   MOBILE
+   ----------------------------- */
 @media screen and (max-width: 768px) {
   .fh5co-cover,
   #fh5co-header.fh5co-cover {
@@ -633,117 +630,119 @@ h1, h2, h3, h4, h5, h6, figure {
     background-position: center center;
     background-attachment: scroll;
     align-items: flex-start;
+    overflow: visible;
   }
   #fh5co-header .hero-container {
-    /* Push content a little down from the top / menu */
-    padding: 88px 16px 44px;
     min-height: 100dvh;
-    align-items: flex-start;
-    justify-content: flex-start;
+    padding: 80px 18px 36px; /* below hamburger, not flush to top */
+    align-items: center;
+    justify-content: center;
   }
   #fh5co-header .hero-content {
-    gap: 0;
-    padding-top: 12px;
-    padding-bottom: 16px;
+    max-width: 420px;
+    gap: 16px;
+    padding: 8px 0 12px;
   }
+
+  /* Stacked title on mobile */
   #fh5co-header .hero-title {
-    padding: 0 8px 0;
-    margin-bottom: 24px !important;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 2px;
+    white-space: normal;
+    padding: 0 6px;
   }
   #fh5co-header .hero-title .hero-name {
-    font-size: clamp(32px, 9.5vw, 42px);
+    display: block;
+    width: 100%;
+    font-size: clamp(34px, 10vw, 44px);
     line-height: 1.08;
-    padding: 0.08em 0.1em 0.2em;
+    padding: 0.06em 0 0.18em;
   }
   #fh5co-header .hero-title .hero-name:last-child {
-    padding-bottom: 0.4em;
+    padding-bottom: 0.28em;
   }
   #fh5co-header .hero-title .hero-weds {
-    font-size: 16px;
-    letter-spacing: 0.32em;
-    padding: 4px 0 8px;
+    display: block;
+    width: 100%;
+    font-size: 15px;
+    letter-spacing: 0.3em;
+    padding: 2px 0 4px;
+    top: 0;
   }
+
   #fh5co-header .hero-photo-wrap {
-    width: min(300px, 86vw);
+    width: min(300px, 84vw);
     max-width: none;
-    margin-bottom: 22px !important;
     border-radius: 18px;
   }
   #fh5co-header .hero-photo {
     border-radius: 14px;
-    aspect-ratio: 16 / 10;
   }
   #fh5co-header .hero-photo-wrap::before {
     inset: -8px;
     border-radius: 24px;
   }
   #fh5co-header .hero-photo-wrap::after {
-    inset: 5px;
     border-radius: 14px;
   }
   #fh5co-header .hero-date {
-    font-size: 20px !important;
-    margin-bottom: 12px !important;
+    font-size: 19px !important;
   }
   #fh5co-header .hero-quote {
-    font-size: 15px !important;
-    padding: 0 14px !important;
-    margin-bottom: 16px !important;
+    font-size: 14px !important;
+    padding: 0 12px !important;
   }
   #fh5co-header .flipTimebox {
-    padding-top: 20px;
-    margin-bottom: 22px !important;
-    transform: scale(0.9);
+    padding-top: 14px;
+    transform: scale(0.82);
     transform-origin: center center;
   }
-  #fh5co-header .hero-cta {
-    padding-top: 2px;
+  #fh5co-header .hero-cta .btn {
+    padding: 13px 24px !important;
+    font-size: 13px !important;
   }
 }
+
+/* Narrow phones */
 @media screen and (max-width: 380px) {
   #fh5co-header .hero-container {
-    padding-top: 80px;
+    padding: 72px 14px 28px;
   }
-  #fh5co-header .flipTimebox {
-    transform: scale(0.78);
-    padding-top: 18px;
-    margin-bottom: 18px !important;
-  }
-  #fh5co-header .hero-photo-wrap {
-    width: min(260px, 88vw);
-    margin-bottom: 18px !important;
-  }
-  #fh5co-header .hero-title {
-    margin-bottom: 20px !important;
+  #fh5co-header .hero-content {
+    gap: 14px;
   }
   #fh5co-header .hero-title .hero-name {
     font-size: clamp(28px, 9vw, 36px);
   }
-}
-@media screen and (max-height: 760px) and (max-width: 768px) {
-  #fh5co-header .hero-container {
-    padding-top: 72px;
-  }
-  #fh5co-header .hero-title {
-    margin-bottom: 16px !important;
-  }
   #fh5co-header .hero-photo-wrap {
-    width: min(240px, 78vw);
-    margin-bottom: 14px !important;
+    width: min(260px, 88vw);
+  }
+  #fh5co-header .flipTimebox {
+    transform: scale(0.72);
+  }
+}
+
+/* Short mobile screens — keep stack compact but readable */
+@media screen and (max-width: 768px) and (max-height: 720px) {
+  #fh5co-header .hero-container {
+    padding-top: 64px;
+    padding-bottom: 24px;
+    justify-content: flex-start;
+  }
+  #fh5co-header .hero-content {
+    gap: 12px;
   }
   #fh5co-header .hero-title .hero-name {
     font-size: clamp(28px, 8vw, 36px);
   }
-  #fh5co-header .hero-date {
-    margin-bottom: 8px !important;
-  }
-  #fh5co-header .hero-quote {
-    margin-bottom: 10px !important;
+  #fh5co-header .hero-photo-wrap {
+    width: min(230px, 72vw);
   }
   #fh5co-header .flipTimebox {
-    transform: scale(0.8);
-    padding-top: 16px;
-    margin-bottom: 14px !important;
+    transform: scale(0.72);
+    padding-top: 10px;
   }
 }
 @media screen and (min-width: 1920px) {
