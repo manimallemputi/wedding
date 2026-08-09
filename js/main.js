@@ -182,6 +182,41 @@
 	
 	};
 
+	// Smooth in-page nav: center section in viewport when possible
+	var smoothSectionScroll = function() {
+		$('a[href^="#"]').on('click', function(event) {
+			var href = $(this).attr('href');
+			if (!href || href === '#' || href.length < 2) {
+				return;
+			}
+			var $target = $(href);
+			if (!$target.length) {
+				return;
+			}
+			event.preventDefault();
+
+			var winH = $(window).height();
+			var targetTop = $target.offset().top;
+			var targetH = $target.outerHeight();
+			var scrollTo = targetTop;
+
+			// Prefer centering shorter sections; keep top-aligned if taller than viewport
+			if (targetH < winH) {
+				scrollTo = targetTop - Math.max(0, (winH - targetH) / 2);
+			}
+
+			$('html, body').stop().animate({
+				scrollTop: Math.max(0, scrollTo)
+			}, 650, 'easeInOutExpo');
+
+			// Close mobile offcanvas if open
+			if ($('body').hasClass('offcanvas')) {
+				$('body').removeClass('overflow offcanvas');
+				$('.js-fh5co-nav-toggle').removeClass('active');
+			}
+		});
+	};
+
 
 	// Loading page
 	var loaderPage = function() {
@@ -208,9 +243,14 @@
 		}
 	};
 
-	// Parallax
+	// Parallax (desktop only — avoids broken mobile background positioning)
 	var parallax = function() {
-		$(window).stellar();
+		if ($(window).width() > 768) {
+			$(window).stellar({
+				horizontalScrolling: false,
+				responsive: true
+			});
+		}
 	};
 
 	
@@ -223,6 +263,7 @@
 		dropdown();
 		testimonialCarousel();
 		goToTop();
+		smoothSectionScroll();
 		loaderPage();
 		counter();
 		counterWayPoint();
