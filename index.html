@@ -71,6 +71,7 @@
 					<ul>
 						<li class="active"><a href="index.html">Home</a></li>
 						<li class="active"><a href="#fh5co-event">Events</a></li>
+						<li class="active"><a href="#fh5co-rsvp">RSVP</a></li>
 						<li class="active"><a href="#fh5co-blessing">Bless us</a></li>
 					</ul>
 				</div>
@@ -165,6 +166,90 @@
 			</div>
 		</div>
 	</div>
+
+
+	<section id="fh5co-rsvp" class="rsvp-section" aria-label="RSVP">
+		<div class="container rsvp-container">
+			<div class="text-center rsvp-heading animate-box">
+				<h2>RSVP</h2>
+				<p class="rsvp-sub">Kindly respond so we can welcome you with love</p>
+				<div class="rsvp-heading-line" aria-hidden="true"></div>
+			</div>
+			<div class="rsvp-card animate-box" data-animate-effect="fadeInUp">
+				<form name="rsvp" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" action="/thank-you.html">
+					<input type="hidden" name="form-name" value="rsvp" />
+					<p class="rsvp-honeypot" hidden>
+						<label>Don’t fill this out: <input name="bot-field" tabindex="-1" autocomplete="off" /></label>
+					</p>
+
+					<div class="rsvp-grid">
+						<div class="rsvp-field">
+							<label for="rsvp-name">Full name <span class="req">*</span></label>
+							<input type="text" id="rsvp-name" name="name" required placeholder="Your full name" autocomplete="name" />
+						</div>
+						<div class="rsvp-field">
+							<label for="rsvp-email">Email <span class="req">*</span></label>
+							<input type="email" id="rsvp-email" name="email" required placeholder="you@example.com" autocomplete="email" />
+						</div>
+						<div class="rsvp-field">
+							<label for="rsvp-phone">Phone</label>
+							<input type="tel" id="rsvp-phone" name="phone" placeholder="Optional" autocomplete="tel" />
+						</div>
+						<div class="rsvp-field">
+							<label for="rsvp-guests">Number of guests <span class="req">*</span></label>
+							<input type="number" id="rsvp-guests" name="guest_count" min="1" max="20" value="1" required />
+							<span class="rsvp-hint">Including yourself</span>
+						</div>
+					</div>
+
+					<div class="rsvp-field rsvp-field-full">
+						<label for="rsvp-guest-names">Guest names</label>
+						<input type="text" id="rsvp-guest-names" name="guest_names" placeholder="If more than one, list full names" />
+					</div>
+
+					<fieldset class="rsvp-fieldset">
+						<legend>Will you attend? <span class="req">*</span></legend>
+						<div class="rsvp-radios">
+							<label class="rsvp-choice"><input type="radio" name="attending" value="Yes" required /> Yes, with joy</label>
+							<label class="rsvp-choice"><input type="radio" name="attending" value="No" /> Regretfully no</label>
+							<label class="rsvp-choice"><input type="radio" name="attending" value="Maybe" /> Not sure yet</label>
+						</div>
+					</fieldset>
+
+					<fieldset class="rsvp-fieldset">
+						<legend>Which events will you join?</legend>
+						<p class="rsvp-hint rsvp-hint-block">Select all that apply · Avula Ranch, Celina, TX</p>
+						<div class="rsvp-events">
+							<label class="rsvp-event-choice">
+								<input type="checkbox" name="event_sangeet" value="Yes" />
+								<span class="rsvp-event-title">Sangeet / Cocktail</span>
+								<span class="rsvp-event-meta">Friday, 21 August 2026 · 7:00 PM</span>
+							</label>
+							<label class="rsvp-event-choice">
+								<input type="checkbox" name="event_wedding" value="Yes" />
+								<span class="rsvp-event-title">Wedding</span>
+								<span class="rsvp-event-meta">Sunday, 23 August 2026 · Muhurtam 11:23 AM</span>
+							</label>
+						</div>
+					</fieldset>
+
+					<div class="rsvp-field rsvp-field-full">
+						<label for="rsvp-diet">Dietary needs or allergies</label>
+						<input type="text" id="rsvp-diet" name="dietary" placeholder="Optional — e.g. vegetarian, nut allergy" />
+					</div>
+
+					<div class="rsvp-field rsvp-field-full">
+						<label for="rsvp-message">Message or blessing</label>
+						<textarea id="rsvp-message" name="message" rows="3" placeholder="Optional note for the couple"></textarea>
+					</div>
+
+					<div class="rsvp-actions">
+						<button type="submit" class="rsvp-submit">Send RSVP</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</section>
 
 
 	<section id="fh5co-blessing" class="blessing-page" aria-label="Bless us">

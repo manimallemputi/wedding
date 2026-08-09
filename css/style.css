@@ -1331,6 +1331,344 @@ h1, h2, h3, h4, h5, h6, figure {
   }
 }
 /* =========================================================
+   RSVP — Netlify Forms
+   ========================================================= */
+#fh5co-rsvp.rsvp-section {
+  position: relative;
+  width: 100%;
+  float: left;
+  clear: both;
+  padding: 5.5em 0 5em;
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(255, 255, 255, 0.55) 0%, transparent 55%),
+    linear-gradient(180deg, #faf4ec 0%, #f3e6d6 50%, #efe0d0 100%);
+  box-sizing: border-box;
+}
+#fh5co-rsvp .rsvp-container {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 0 18px;
+  float: none;
+}
+#fh5co-rsvp .rsvp-heading h2 {
+  margin: 0 0 0.35em;
+  font-family: "Amsterdam", Engagement, Georgia, cursive;
+  font-size: clamp(42px, 7vw, 64px);
+  font-weight: 400;
+  color: #2c211c;
+  line-height: 1.15;
+}
+#fh5co-rsvp .rsvp-sub {
+  margin: 0 0 0.85em;
+  font-family: Engagement, Georgia, cursive;
+  font-size: clamp(18px, 2.4vw, 24px);
+  color: #6a4a36;
+  line-height: 1.4;
+}
+#fh5co-rsvp .rsvp-heading-line {
+  width: 64px;
+  height: 3px;
+  margin: 0 auto 2em;
+  border-radius: 999px;
+  background: linear-gradient(90deg, transparent, #c48a52, transparent);
+}
+#fh5co-rsvp .rsvp-card {
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  border-radius: 22px;
+  padding: 2rem 1.75rem 1.75rem;
+  box-shadow: 0 14px 40px rgba(80, 40, 20, 0.1), 0 2px 8px rgba(80, 40, 20, 0.05);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  box-sizing: border-box;
+}
+#fh5co-rsvp .rsvp-honeypot {
+  display: none !important;
+  position: absolute;
+  left: -9999px;
+}
+#fh5co-rsvp .rsvp-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem 1.15rem;
+}
+#fh5co-rsvp .rsvp-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-bottom: 1rem;
+}
+#fh5co-rsvp .rsvp-field-full {
+  width: 100%;
+}
+#fh5co-rsvp label,
+#fh5co-rsvp legend {
+  font-family: Sofia Sans Condensed, "Work Sans", sans-serif;
+  font-size: 14px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #5a4030;
+  font-weight: 600;
+  margin: 0;
+}
+#fh5co-rsvp .req {
+  color: #b06a3a;
+}
+#fh5co-rsvp input[type="text"],
+#fh5co-rsvp input[type="email"],
+#fh5co-rsvp input[type="tel"],
+#fh5co-rsvp input[type="number"],
+#fh5co-rsvp textarea {
+  width: 100%;
+  border: 1px solid rgba(120, 70, 40, 0.22);
+  border-radius: 12px;
+  padding: 0.7rem 0.85rem;
+  font-size: 16px;
+  font-family: "Work Sans", Arial, sans-serif;
+  color: #2c211c;
+  background: #fff;
+  box-sizing: border-box;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  -webkit-appearance: none;
+  appearance: none;
+}
+#fh5co-rsvp input:focus,
+#fh5co-rsvp textarea:focus {
+  outline: none;
+  border-color: rgba(176, 106, 58, 0.55);
+  box-shadow: 0 0 0 3px rgba(196, 138, 82, 0.18);
+}
+#fh5co-rsvp textarea {
+  resize: vertical;
+  min-height: 96px;
+}
+#fh5co-rsvp .rsvp-hint {
+  font-family: "Work Sans", Arial, sans-serif;
+  font-size: 12px;
+  color: #8a7060;
+  letter-spacing: 0;
+  text-transform: none;
+  font-weight: 400;
+}
+#fh5co-rsvp .rsvp-hint-block {
+  display: block;
+  margin: 0.15rem 0 0.75rem;
+}
+#fh5co-rsvp .rsvp-fieldset {
+  border: 1px solid rgba(120, 70, 40, 0.14);
+  border-radius: 14px;
+  padding: 1rem 1rem 0.85rem;
+  margin: 0 0 1.15rem;
+  background: rgba(176, 106, 58, 0.04);
+}
+#fh5co-rsvp .rsvp-fieldset legend {
+  padding: 0 0.35rem;
+  width: auto;
+  border: 0;
+  margin-bottom: 0;
+}
+#fh5co-rsvp .rsvp-radios {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem 1.1rem;
+  padding-top: 0.35rem;
+}
+#fh5co-rsvp .rsvp-choice {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-family: Engagement, Georgia, cursive;
+  font-size: 18px;
+  text-transform: none;
+  letter-spacing: 0.02em;
+  font-weight: 400;
+  color: #3a2a22;
+  cursor: pointer;
+}
+#fh5co-rsvp .rsvp-choice input,
+#fh5co-rsvp .rsvp-event-choice input {
+  width: 1.05rem;
+  height: 1.05rem;
+  accent-color: #b06a3a;
+  margin: 0;
+  flex-shrink: 0;
+}
+#fh5co-rsvp .rsvp-events {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+#fh5co-rsvp .rsvp-event-choice {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 0.35rem 0.6rem;
+  padding: 0.85rem 0.9rem;
+  border-radius: 12px;
+  border: 1px solid rgba(120, 70, 40, 0.16);
+  background: #fff;
+  cursor: pointer;
+  text-transform: none;
+  letter-spacing: 0;
+  font-weight: 400;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+#fh5co-rsvp .rsvp-event-choice:hover {
+  border-color: rgba(176, 106, 58, 0.4);
+  box-shadow: 0 4px 14px rgba(80, 40, 20, 0.06);
+}
+#fh5co-rsvp .rsvp-event-choice input {
+  margin-top: 0.2rem;
+}
+#fh5co-rsvp .rsvp-event-title {
+  flex: 1 1 calc(100% - 1.8rem);
+  font-family: Sofia Sans Condensed, sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: #2c211c;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+#fh5co-rsvp .rsvp-event-meta {
+  flex: 1 1 100%;
+  padding-left: 1.65rem;
+  font-family: Engagement, Georgia, cursive;
+  font-size: 16px;
+  color: #6a4a36;
+  line-height: 1.35;
+}
+#fh5co-rsvp .rsvp-actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 0.5rem;
+  padding-top: 0.35rem;
+}
+#fh5co-rsvp .rsvp-submit {
+  border: none;
+  cursor: pointer;
+  padding: 0.95rem 2.4rem;
+  border-radius: 999px;
+  background: #2c211c;
+  color: #fff;
+  font-family: Sofia Sans Condensed, sans-serif;
+  font-size: 16px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  box-shadow: 0 10px 24px rgba(44, 33, 28, 0.22);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+}
+#fh5co-rsvp .rsvp-submit:hover {
+  background: #4a3428;
+  transform: translateY(-2px);
+  box-shadow: 0 14px 28px rgba(44, 33, 28, 0.28);
+}
+#fh5co-rsvp .rsvp-submit:active {
+  transform: translateY(0);
+}
+@media screen and (max-width: 700px) {
+  #fh5co-rsvp.rsvp-section {
+    padding: 4em 0 3.5em;
+  }
+  #fh5co-rsvp .rsvp-card {
+    padding: 1.5rem 1.15rem 1.35rem;
+    border-radius: 18px;
+  }
+  #fh5co-rsvp .rsvp-grid,
+  #fh5co-rsvp .rsvp-events {
+    grid-template-columns: 1fr;
+  }
+  #fh5co-rsvp .rsvp-radios {
+    flex-direction: column;
+    gap: 0.55rem;
+  }
+}
+
+/* Thank-you page */
+.thankyou-page {
+  min-height: 100vh;
+  min-height: 100dvh;
+  margin: 0;
+  background:
+    radial-gradient(ellipse at 50% 20%, rgba(255, 255, 255, 0.6) 0%, transparent 50%),
+    linear-gradient(180deg, #faf4ec 0%, #f3e6d6 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+  box-sizing: border-box;
+}
+.thankyou-wrap {
+  width: 100%;
+  max-width: 520px;
+}
+.thankyou-card {
+  text-align: center;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 22px;
+  padding: 2.5rem 1.75rem;
+  box-shadow: 0 16px 40px rgba(80, 40, 20, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.75);
+}
+.thankyou-kicker {
+  margin: 0 0 0.5rem;
+  font-family: Sofia Sans Condensed, sans-serif;
+  font-size: 13px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #8a5a3a;
+}
+.thankyou-title {
+  margin: 0 0 0.75rem;
+  font-family: "Amsterdam", Engagement, Georgia, cursive;
+  font-size: clamp(42px, 10vw, 60px);
+  font-weight: 400;
+  color: #2c211c;
+  line-height: 1.1;
+}
+.thankyou-line {
+  width: 56px;
+  height: 2px;
+  margin: 0 auto 1.25rem;
+  border-radius: 999px;
+  background: linear-gradient(90deg, transparent, #c48a52, transparent);
+}
+.thankyou-message {
+  margin: 0 0 1.25rem;
+  font-family: Engagement, Georgia, cursive;
+  font-size: clamp(18px, 4vw, 22px);
+  line-height: 1.5;
+  color: #4a3a30;
+}
+.thankyou-names {
+  margin: 0 0 1.75rem;
+  font-family: "Amsterdam", Arial, cursive;
+  font-size: clamp(24px, 5vw, 30px);
+  color: #2c211c;
+}
+.thankyou-names span {
+  font-family: Engagement, Georgia, cursive;
+  font-size: 0.55em;
+  padding: 0 0.25em;
+  color: #8a5a3a;
+}
+.thankyou-back {
+  display: inline-block;
+  padding: 0.85rem 1.6rem;
+  border-radius: 999px;
+  background: #2c211c;
+  color: #fff !important;
+  text-decoration: none !important;
+  font-family: Sofia Sans Condensed, sans-serif;
+  font-size: 14px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.thankyou-back:hover {
+  background: #4a3428;
+  color: #fff !important;
+}
+
+/* =========================================================
    Bless us — split page: message left | photo right
    ========================================================= */
 #fh5co-blessing.blessing-page {
